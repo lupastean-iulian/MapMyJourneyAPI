@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapMyJourneyAPI.Domain", "Domain\MapMyJourneyAPI.Domain.csproj", "{D1C32451-BDD1-445D-AEF7-9503E4131C45}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapMyJourneyAPI.Application", "Application\MapMyJourneyAPI.Application.csproj", "{EC05E871-F9C4-4B2B-ACD4-AAE6E26B1391}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapMyJourneyAPI.Infrastructure", "Infrastructure\MapMyJourneyAPI.Infrastructure.csproj", "{EA5429C9-AA76-4BB2-A7EC-C6BAD493C7D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapMyJourneyAPI.DataAccess", "DataAccess\MapMyJourneyAPI.DataAccess.csproj", "{1000C00A-2704-4000-AC08-CB80D38D144A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapMyJourneyAPI.API", "API\MapMyJourneyAPI.API.csproj", "{0975F91E-8D59-4914-9554-19DEE711EAB1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D1C32451-BDD1-445D-AEF7-9503E4131C45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1C32451-BDD1-445D-AEF7-9503E4131C45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1C32451-BDD1-445D-AEF7-9503E4131C45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1C32451-BDD1-445D-AEF7-9503E4131C45}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC05E871-F9C4-4B2B-ACD4-AAE6E26B1391}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC05E871-F9C4-4B2B-ACD4-AAE6E26B1391}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC05E871-F9C4-4B2B-ACD4-AAE6E26B1391}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC05E871-F9C4-4B2B-ACD4-AAE6E26B1391}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA5429C9-AA76-4BB2-A7EC-C6BAD493C7D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA5429C9-AA76-4BB2-A7EC-C6BAD493C7D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA5429C9-AA76-4BB2-A7EC-C6BAD493C7D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA5429C9-AA76-4BB2-A7EC-C6BAD493C7D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1000C00A-2704-4000-AC08-CB80D38D144A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1000C00A-2704-4000-AC08-CB80D38D144A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1000C00A-2704-4000-AC08-CB80D38D144A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1000C00A-2704-4000-AC08-CB80D38D144A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0975F91E-8D59-4914-9554-19DEE711EAB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0975F91E-8D59-4914-9554-19DEE711EAB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0975F91E-8D59-4914-9554-19DEE711EAB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0975F91E-8D59-4914-9554-19DEE711EAB1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
