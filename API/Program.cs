@@ -38,7 +38,7 @@ builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(builder =>
     {
-        builder.WithOrigins("http://localhost:3000", "https://nice-water-01e2ed603.6.azurestaticapps.net")
+        builder.WithOrigins(["http://localhost:3000", "https://nice-water-01e2ed603.6.azurestaticapps.net"])
                .AllowAnyHeader()
                .AllowAnyMethod();
     });
