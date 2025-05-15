@@ -25,7 +25,7 @@ jobs:
         run: dotnet build --configuration Release --no-restore
 
       - name: Publish WebAPI
-        run: dotnet publish src/WebAPI/WebAPI.csproj -c Release -o publish_output
+        run: dotnet publish MapMyJourneyAPI/API/MapMyJourneyAPI.API.csproj -c Release -o publish_output
 
       - name: Azure Login
         uses: azure/login@v1
