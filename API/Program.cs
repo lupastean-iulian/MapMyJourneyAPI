@@ -12,7 +12,7 @@ builder.Services.AddSwaggerGen();
 
 // Add DbContext with SQL Server
 builder.Services.AddDbContext<MapMyJourneyContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"), options => options.EnableRetryOnFailure(maxRetryCount: 5, maxRetryDelay: TimeSpan.FromSeconds(30), errorNumbersToAdd: null)));
 
 // Add DataAccess services
 builder.Services.AddDataAccessServices();
