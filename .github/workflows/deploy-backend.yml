@@ -1,9 +1,9 @@
-name: Deploy ASP.NET Backend to Azure Web App
+name: Deploy ASP.NET Backend and Run Migrations
 
 on:
   push:
     branches:
-      - main  # or your main backend branch
+      - main
 
 jobs:
   build-and-deploy:
@@ -16,16 +16,16 @@ jobs:
       - name: Setup .NET SDK
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '7.0.x' # Change if you're using a different version
+          dotnet-version: '7.0.x'
 
       - name: Restore dependencies
         run: dotnet restore
 
-      - name: Build
+      - name: Build solution
         run: dotnet build --configuration Release --no-restore
 
-      - name: Publish
-        run: dotnet publish -c Release -o publish_output
+      - name: Publish WebAPI
+        run: dotnet publish src/WebAPI/WebAPI.csproj -c Release -o publish_output
 
       - name: Azure Login
         uses: azure/login@v1
@@ -37,3 +37,13 @@ jobs:
         with:
           app-name: ${{ secrets.AZURE_WEBAPP_NAME }}
           package: publish_output
+
+      - name: Apply EF Core Migrations
+        run: |
+          dotnet tool install --global dotnet-ef
+          export PATH="$PATH:/home/runner/.dotnet/tools"
+          dotnet ef database update \
+            --project MapMyJourneyAPI/DataAccess/MapMyJourneyAPI.DataAccess.csproj \
+            --startup-project MapMyJourneyAPI/API/MapMyJourneyAPI.API.csproj
+        env:
+          ConnectionStrings__DefaultConnection: ${{ secrets.SQLAZURE_CONNECTION_STRING }}
