@@ -1,3 +1,6 @@
+using System.Net;
+using MapMyJourneyAPI.Application.Constants.ErrorMessages;
+using MapMyJourneyAPI.Application.Exceptions;
 using MapMyJourneyAPI.Application.Mediator;
 using MapMyJourneyAPI.Domain.Interfaces;
 using ProfileEntity = MapMyJourneyAPI.Domain.Entities.Profile;
@@ -6,17 +9,17 @@ namespace MapMyJourneyAPI.Application.Profile.Commands;
 
 public class UpdateProfileCommand : IRequest<ProfileEntity>
 {
-    public Guid Id { get; set; }
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
-    public string Email { get; set; }
+    public Guid ProfileId { get; set; }
+    public string PhoneNumber { get; set; }
+    public DateTime? DateOfBirth { get; set; }
+    public string Address { get; set; }
 
-    public UpdateProfileCommand(Guid id, string firstName, string lastName, string email)
+    public UpdateProfileCommand(Guid id, string phoneNumber, DateTime? dateOfBirth, string address)
     {
-        Id = id;
-        FirstName = firstName;
-        LastName = lastName;
-        Email = email;
+        ProfileId = id;
+        PhoneNumber = phoneNumber;
+        DateOfBirth = dateOfBirth;
+        Address = address;
     }
 }
 
@@ -31,16 +34,7 @@ public class UpdateProfileCommandHandler : IRequestHandler<UpdateProfileCommand,
 
     public async Task<ProfileEntity> Handle(UpdateProfileCommand request)
     {
-        var profile = await _repository.GetByIdAsync(request.Id);
-        if (profile == null)
-        {
-            throw new KeyNotFoundException("Profile not found.");
-        }
-
-        profile.FirstName = request.FirstName;
-        profile.LastName = request.LastName;
-        profile.Email = request.Email;
-
+        var profile = await _repository.GetByIdAsync(request.ProfileId) ?? throw new HttpResponseException(HttpStatusCode.NotFound, ProfileErrorMessages.ProfileNotFound);
         await _repository.UpdateAsync(profile);
         return profile;
     }

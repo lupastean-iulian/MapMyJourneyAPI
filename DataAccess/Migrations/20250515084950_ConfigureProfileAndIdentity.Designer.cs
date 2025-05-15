@@ -4,6 +4,7 @@ using MapMyJourneyAPI.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MapMyJourneyAPI.DataAccess.Migrations
 {
     [DbContext(typeof(MapMyJourneyContext))]
-    partial class MapMyJourneyContextModelSnapshot : ModelSnapshot
+    [Migration("20250515084950_ConfigureProfileAndIdentity")]
+    partial class ConfigureProfileAndIdentity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,9 +39,6 @@ namespace MapMyJourneyAPI.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsSocial")
-                        .HasColumnType("bit");
-
                     b.Property<Guid>("ProfileId")
                         .HasColumnType("uniqueidentifier");
 
@@ -46,11 +46,14 @@ namespace MapMyJourneyAPI.DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("isSocial")
+                        .HasColumnType("bit");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ProfileId");
 
-                    b.ToTable("Identities");
+                    b.ToTable("Identity");
                 });
 
             modelBuilder.Entity("MapMyJourneyAPI.Domain.Entities.Profile", b =>

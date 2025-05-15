@@ -7,21 +7,33 @@ namespace MapMyJourneyAPI.Application.Profile.Commands;
 
 public class CreateProfileCommand : IRequest<ProfileEntity>
 {
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
+    public string Name { get; set; }
+    public string Auth0Id { get; set; }
     public string Email { get; set; }
+    public DateTime CreatedAt { get; set; }
+    public DateTime UpdatedAt { get; set; }
+    public DateTime LastLogin { get; set; }
+    public string ProfilePictureUrl { get; set; }
+    public Identity[] Identities { get; set; }
 
-    public CreateProfileCommand(string firstName, string lastName, string email)
+
+    public CreateProfileCommand(string name, string auth0Id, string email, DateTime createdAt, DateTime updatedAt, DateTime lastLogin, string profilePictureUrl, Identity[] identities)
     {
-        FirstName = firstName;
-        LastName = lastName;
+        Name = name;
+        Auth0Id = auth0Id;
         Email = email;
+        CreatedAt = createdAt;
+        UpdatedAt = updatedAt;
+        LastLogin = lastLogin;
+        ProfilePictureUrl = profilePictureUrl;
+        Identities = identities;
     }
 }
 
 public class CreateProfileCommandHandler : IRequestHandler<CreateProfileCommand, ProfileEntity>
 {
     private readonly IProfileRepository _repository;
+
 
     public CreateProfileCommandHandler(IProfileRepository repository)
     {
@@ -30,16 +42,20 @@ public class CreateProfileCommandHandler : IRequestHandler<CreateProfileCommand,
 
     public async Task<ProfileEntity> Handle(CreateProfileCommand request)
     {
+        var profileId = Guid.NewGuid();
         var profile = new ProfileEntity
         {
-            Id = Guid.NewGuid(),
-            FirstName = request.FirstName,
-            LastName = request.LastName,
+            Id = profileId,
+            Name = request.Name,
+            Auth0Id = request.Auth0Id,
             Email = request.Email,
-            Address = string.Empty // Default value for Address
+            CreatedAt = request.CreatedAt,
+            UpdatedAt = request.UpdatedAt,
+            LastLogin = request.LastLogin,
+            ProfilePictureUrl = request.ProfilePictureUrl,
         };
 
-        await _repository.AddAsync(profile);
+        await _repository.AddAsync(profile, request.Identities);
         return profile;
     }
 }

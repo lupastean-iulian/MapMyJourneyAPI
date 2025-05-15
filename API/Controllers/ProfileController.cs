@@ -4,6 +4,7 @@ using MapMyJourneyAPI.Application.Profile.Queries;
 using MapMyJourneyAPI.Domain.Entities;
 using MapMyJourneyAPI.Domain.Pagination;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MapMyJourneyAPI.API.Controllers;
 
@@ -30,9 +31,10 @@ public class ProfileController : ControllerBase
     }
 
     [HttpGet]
+    [Authorize]
     public async Task<ActionResult<List<Profile>>> GetAllProfiles()
     {
-        var result = await _mediator.Send<GetAllProfilesQuery, List<Profile>>( new GetAllProfilesQuery());
+        var result = await _mediator.Send<GetAllProfilesQuery, List<Profile>>(new GetAllProfilesQuery());
         return Ok(result);
     }
 
@@ -53,7 +55,7 @@ public class ProfileController : ControllerBase
     [HttpPut("{id}")]
     public async Task<ActionResult<Profile>> UpdateProfile(Guid id, [FromBody] UpdateProfileCommand command)
     {
-        if (id != command.Id)
+        if (id != command.ProfileId)
         {
             return BadRequest("ID mismatch.");
         }
