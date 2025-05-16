@@ -12,5 +12,7 @@ public class UserSyncModel
     public DateTime LastLogin { get; set; }
     public Identity[] Identities { get; set; } = [];
     public required string Picture { get; set; }
-
+    public string? PhoneNumber { get; set; }
+    public DateTime? DateOfBirth { get; set; }
+    public string? Address { get; set; }
 }

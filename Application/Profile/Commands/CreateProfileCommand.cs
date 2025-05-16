@@ -15,9 +15,12 @@ public class CreateProfileCommand : IRequest<ProfileEntity>
     public DateTime LastLogin { get; set; }
     public string ProfilePictureUrl { get; set; }
     public Identity[] Identities { get; set; }
+    public string? PhoneNumber { get; set; }
+    public DateTime? DateOfBirth { get; set; }
+    public string? Address { get; set; }
 
 
-    public CreateProfileCommand(string name, string auth0Id, string email, DateTime createdAt, DateTime updatedAt, DateTime lastLogin, string profilePictureUrl, Identity[] identities)
+    public CreateProfileCommand(string name, string auth0Id, string email, DateTime createdAt, DateTime updatedAt, DateTime lastLogin, string profilePictureUrl, Identity[] identities, string? phoneNumber, DateTime? dateOfBirth, string? address)
     {
         Name = name;
         Auth0Id = auth0Id;
@@ -27,6 +30,9 @@ public class CreateProfileCommand : IRequest<ProfileEntity>
         LastLogin = lastLogin;
         ProfilePictureUrl = profilePictureUrl;
         Identities = identities;
+        PhoneNumber = phoneNumber;
+        DateOfBirth = dateOfBirth;
+        Address = address;
     }
 }
 

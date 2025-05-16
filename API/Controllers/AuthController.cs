@@ -33,7 +33,10 @@ public class AuthController : ControllerBase
             now,
             now,
             user.Picture,
-            user.Identities
+            user.Identities,
+            user.PhoneNumber,
+            user.DateOfBirth,
+            user.Address
         );
 
         var result = await _mediator.Send<CreateProfileCommand, Profile>(command);
