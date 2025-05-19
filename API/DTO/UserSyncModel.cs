@@ -13,6 +13,6 @@ public class UserSyncModel
     public Identity[] Identities { get; set; } = [];
     public required string Picture { get; set; }
     public string? PhoneNumber { get; set; }
-    public DateTime? DateOfBirth { get; set; }
+    public string? Dob { get; set; }
     public string? Address { get; set; }
 }

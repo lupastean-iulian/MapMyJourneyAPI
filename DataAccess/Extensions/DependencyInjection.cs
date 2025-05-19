@@ -9,6 +9,7 @@ namespace MapMyJourneyAPI.DataAccess.Extensions
         public static IServiceCollection AddDataAccessServices(this IServiceCollection services)
         {
             services.AddScoped<IProfileRepository, ProfileRepository>();
+            services.AddScoped<ILocationRepository, LocationRepository>();
             return services;
         }
     }

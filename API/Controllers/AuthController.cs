@@ -25,6 +25,11 @@ public class AuthController : ControllerBase
         {
             return Unauthorized(new { message = "Invalid API key." });
         }
+        DateTime? dob = null;
+        if (!string.IsNullOrWhiteSpace(user.Dob) && DateTime.TryParse(user.Dob, out var parsedDob))
+        {
+            dob = parsedDob;
+        }
         var command = new CreateProfileCommand(
             user.Name,
             user.Auth0Id,
@@ -35,7 +40,7 @@ public class AuthController : ControllerBase
             user.Picture,
             user.Identities,
             user.PhoneNumber,
-            user.DateOfBirth,
+            dob,
             user.Address
         );
 

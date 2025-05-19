@@ -20,6 +20,7 @@ public class ProfileController : ControllerBase
     }
 
     [HttpGet("{id}")]
+    [Authorize]
     public async Task<ActionResult<Profile>> GetProfileById(Guid id)
     {
         var result = await _mediator.Send<GetProfileByIdQuery, Profile>(new GetProfileByIdQuery(id));
@@ -39,6 +40,7 @@ public class ProfileController : ControllerBase
     }
 
     [HttpGet("paginated")]
+    [Authorize]
     public async Task<ActionResult> GetPaginatedProfiles([FromQuery] int page, [FromQuery] int pageSize)
     {
         var result = await _mediator.Send<GetPaginatedProfilesQuery, PaginatedResponse<Profile>>(new GetPaginatedProfilesQuery(page, pageSize));
@@ -46,6 +48,7 @@ public class ProfileController : ControllerBase
     }
 
     [HttpPost]
+    [Authorize]
     public async Task<ActionResult<Profile>> CreateProfile([FromBody] CreateProfileCommand command)
     {
         var result = await _mediator.Send<CreateProfileCommand, Profile>(command);
@@ -53,6 +56,7 @@ public class ProfileController : ControllerBase
     }
 
     [HttpPut("{id}")]
+    [Authorize]
     public async Task<ActionResult<Profile>> UpdateProfile(Guid id, [FromBody] UpdateProfileCommand command)
     {
         if (id != command.ProfileId)
@@ -64,6 +68,7 @@ public class ProfileController : ControllerBase
     }
 
     [HttpDelete("{id}")]
+    [Authorize]
     public async Task<IActionResult> DeleteProfile(Guid id)
     {
         await _mediator.Send<DeleteProfileCommand, Unit>(new DeleteProfileCommand(id));
